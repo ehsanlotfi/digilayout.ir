@@ -1,1 +1,153 @@
-salam
+<!DOCTYPE html>
+<html lang="fa">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>تابلو بوم مخمل</title>
+        <style>
+            @font-face {
+                font-family: 'Iranian Sans';
+                src: url('assets/font/IranianSans.ttf') format('truetype');
+            }
+
+            body {
+                font-family: 'Iranian Sans', Arial, sans-serif;
+                margin: 0;
+                padding: 0;
+                background-color: #f4f4f4;
+                text-align: center;
+                color: #3c7872;
+                direction: rtl !important;
+            }
+
+            .header {
+                background-color: #fff;
+                padding: 50px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                margin: auto;
+            }
+
+            .gallery {
+                column-count: 3;
+                column-gap: 15px;
+                padding: 20px;
+                max-width: 1200px;
+                margin: auto;
+            }
+
+            .gallery img {
+                width: 100%;
+                margin-bottom: 15px;
+                border-radius: 10px;
+                transition: transform 0.3s ease-in-out;
+                cursor: pointer;
+                break-inside: avoid;
+            }
+
+            .gallery img:hover {
+                transform: scale(1.05);
+            }
+
+            .contact {
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+                margin: auto;
+            }
+
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                visibility: hidden;
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            .overlay img {
+                max-width: 90%;
+                max-height: 90%;
+                border-radius: 10px;
+            }
+
+            .overlay.active {
+                visibility: visible;
+                opacity: 1;
+            }
+
+            p {
+                line-height: 40px;
+                margin: 1rem 0;
+            }
+
+            @media (max-width: 768px) {
+                .gallery {
+                    column-count: 1;
+                }
+
+                .header {
+                    font-size: 1rem;
+                    padding: 20px;
+                }
+
+                p {
+                    line-height: 35px;
+                    margin: .5rem 0;
+                    text-align: right;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1 class="header">تابلو بوم مخمل</h1>
+        <div class="gallery" id="gallery"></div>
+        <div class="overlay" id="overlay" onclick="hideImage()">
+            <img id="overlayImg" src="" alt="نمایش تصویر">
+        </div>
+        <div class="contact">
+            <p>ما با افتخار مجموعه‌ای از زیباترین و باکیفیت‌ترین تابلوهای بوم چاپی را به شما عزیزان ارائه می‌دهیم. اگر
+                دیوارهای خانه، ویلا یا محل کارتان نیاز به تغییری خاص و هنری دارد، تابلوهای بوم ما بهترین انتخاب برای
+                شماست.</p>
+            <p>تمامی تابلوها روی پارچه مخمل درجه ۱ چاپ شده و با بالاترین کیفیت تصاویر و رنگ‌های ثابت، زیبایی ماندگاری را
+                به فضای شما می‌بخشند. شما می‌توانید طرح‌های متنوعی را از میان دنیایی از نمونه‌ها انتخاب کنید یا حتی عکس
+                شخصی خود را روی بوم چاپ کنید و یک اثر خاص و منحصربه‌فرد داشته باشید.</p>
+            <p>با تنوع در سایز و طراحی، ما این امکان را فراهم کرده‌ایم که هر فرد بتواند مطابق با سلیقه و نیاز خود،
+                بهترین تابلو را انتخاب کند.</p>
+            <a href="tel:+9017208898">📞 0901+720-88-98 </a>
+        </div>
+        <script>
+            const images = ["image1.jpg", "image2.jpg", "image3.jpg", "image4.jpg", "image5.jpg", "image6.jpg"];
+            const gallery = document.getElementById("gallery");
+
+            Array(28).fill(0).forEach((src, index) =>
+            {
+                const img = document.createElement("img");
+                img.src = `assets/img/${index + 1}.jpg`;
+                img.alt = `تصویر ${index + 1}`;
+                img.onclick = function () { showImage(this); };
+                gallery.appendChild(img);
+            });
+
+            function showImage(img)
+            {
+                document.getElementById('overlayImg').src = img.src;
+                document.getElementById('overlay').classList.add('active');
+            }
+            function hideImage()
+            {
+                document.getElementById('overlay').classList.remove('active');
+            }
+        </script>
+    </body>
+
+</html>
